@@ -27,32 +27,15 @@
 
 
 
-
 //Basic POST request:
-const postData = {
-  "real_name": "Matt",
-  "message": "Testing"
-};
 
-fetch('http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages', {
-  method: 'POST',
-  headers: {
-       "Content-type": "application/json"
-     },
-  body: JSON.stringify(postData),
-}).then(res => console.log(res));
-
-
-
-
-
-
-var url = "http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
-var body = {
+var url = "https://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
+var body = {message:{
   "real_name": "Matt",
   "message":"test test test test"
 }
 
+}
 function createMessage(url,body) {
    const postConfig = {
      Accept: "application/json",
@@ -62,46 +45,7 @@ function createMessage(url,body) {
      },
      body: JSON.stringify(body)
    };
-   return fetch(url, body)
+   return fetch(url, postConfig)
  }
 
  createMessage(url, body);
-
-
-{
-    fetch("http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages", {
-      method: "POST",
-      body: JSON.stringify({
-        real_name: "Matt",
-        message: "Test test test test"
-      })
-    });
-}
-
-
-fetch('https://davidwalsh.name/submit-json', {
-	method: 'post',
-	body: JSON.stringify({
-		email: "email@email.com",
-		answer: "answer here"
-	})
-});
-
-
-
-
-let myPost = {
-  real_name: "Matt",
-  message: "test test test test"
-}
-
-fetch("http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages", {
-  method: 'POST',
-  body: JSON.stringify(myPost)
-  })
-  .then(function(response) {
-    return response.json()
-  })
-  .then(function(data){
-    console.log("post request response data", data)
-  })
