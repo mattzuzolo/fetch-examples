@@ -26,11 +26,10 @@
 }
 
 
-
 //Basic POST request:
 {
-  var url = "https://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
-  var body = {message:{
+  let url = "https://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
+  let body = {message:{
     "real_name": "MattZ",
     "message":"test test test test #3"
   }
@@ -53,17 +52,49 @@
 
 
 
-//DELETE request
-//Add id of element to delete to URL
-{
-  let url = "http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
-  let id = "374"
-  let url_with_id = url + "/" + id
+//BASIC PUT REQUEST
+  //Add id of element to URL to select which message to delete
+fetch(`http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages/378`, {
+  method: 'PUT',
+  headers: {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  },
+  body: JSON.stringify({ message: { real_name: 'Matt', message: 'My edit was successful'}})
+})
+  .then( res => res.json())
+  .then( json => {
+    console.log(json);
+  })
 
-  fetch(url_with_id, {
-      method: 'delete',
-      headers: {
-        "Content-type": "application/json"
-      }
-    });
-}
+//BASIC PATCH REQUEST
+  //Add id of element to URL to select which message to delete
+fetch(`http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages/378`, {
+  method: 'PATCH',
+  headers: {
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  },
+  body: JSON.stringify({ message: { real_name: 'Matt', message: 'My patch was successful'}})
+})
+  .then( res => res.json())
+  .then( json => {
+    console.log(json);
+  })
+
+
+
+  //Basic DELETE request
+  //Add id of element to URL to select which message to delete
+  {
+    let url = "http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
+    let id = "374"
+    let url_with_id = url + "/" + id
+
+    fetch(url_with_id, {
+        method: 'DELETE',
+        headers: {
+          "Content-type": "application/json"
+        }
+      });
+  }
