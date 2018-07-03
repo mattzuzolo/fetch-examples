@@ -28,24 +28,42 @@
 
 
 //Basic POST request:
+{
+  var url = "https://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
+  var body = {message:{
+    "real_name": "MattZ",
+    "message":"test test test test #3"
+  }
 
-var url = "https://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
-var body = {message:{
-  "real_name": "Matt",
-  "message":"test test test test"
+  }
+  function createMessage(url,body) {
+     const postConfig = {
+       Accept: "application/json",
+       method: "POST",
+       headers: {
+         "Content-type": "application/json"
+       },
+       body: JSON.stringify(body)
+     };
+     return fetch(url, postConfig)
+   }
+
+   createMessage(url, body);
 }
 
-}
-function createMessage(url,body) {
-   const postConfig = {
-     Accept: "application/json",
-     method: "POST",
-     headers: {
-       "Content-type": "application/json"
-     },
-     body: JSON.stringify(body)
-   };
-   return fetch(url, postConfig)
- }
 
- createMessage(url, body);
+
+//DELETE request
+//Add id of element to delete to URL
+{
+  let url = "http://fetch-message-in-the-bottle.herokuapp.com/api/v2/messages"
+  let id = "374"
+  let url_with_id = url + "/" + id
+
+  fetch(url_with_id, {
+      method: 'delete',
+      headers: {
+        "Content-type": "application/json"
+      }
+    });
+}
